@@ -1,0 +1,10 @@
+<h1>Author: <%= @author.full_name %></h1>
+
+<h2>Articles</h2>
+<ul>
+  <% @author.articles.each do |article| %>
+    <li><%= link_to article.title, article_path(article) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', articles_path %>

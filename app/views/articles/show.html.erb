@@ -1,17 +1,28 @@
 <h1><%= @article.title %></h1>
 
+
+<p> <strong><span class="<%= status_color_class(@article.status) %>">
+<%= @article.status.capitalize %>
+</span></strong></p>
+<p><strong>Author:</strong> <%= @article.author.first_name %> <%= @article.author.last_name %></p>
 <p><%= @article.body %></p>
 
+
+
 <ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
+<%= link_to "Edit", edit_article_path(@article), class: "btn btn-primary" %>
+
+  <%= link_to "Destroy", article_path(@article), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %></li>
+                  },  class: "btn btn-primary" %>
 </ul>
 
 <h2>Comments</h2>
+<hr>
 <%= render @article.comments %>
 
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
+
+<%= link_to "Back", articles_path, class: "btn btn-primary" %>

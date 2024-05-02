@@ -1,27 +1,65 @@
-<%= form_with model: article do |form| %>
+
+<%= form_with model: @article do |form| %>
+  <!-- Author selection -->
   <div>
-      <%= form.label :status %><br>
-      <%= form.select :status, Visible::VALID_STATUSES, selected: article.status || 'public' %>
+    <%= form.label :author_id, "Author" %><br>
+    <%= form.select :author_id, Author.all.map { |a| ["#{a.first_name} #{a.last_name}", a.id] } + [['Create New Author', 'new']], { prompt: "Select an author" }, { id: 'author-select' } %>
   </div>
-    <div>
-      <%= form.label :title %><br>
-      <%= form.text_field :title %>
-      <% article.errors.full_messages_for(:title).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
+
+  <!-- New author fields -->
+  <div id="new-author-fields" style="display: none;">
+    <%= form.label :new_author_first_name, "First Name" %><br>
+    <%= form.text_field :new_author_first_name %><br>
+
+    <%= form.label :new_author_last_name, "Last Name" %><br>
+    <%= form.text_field :new_author_last_name %><br>
+
+    <%= form.label :new_author_email, "Email Address" %><br>
+    <%= form.email_field :new_author_email %><br>
+  </div>
   
-    <div>
-      <%= form.label :body %><br>
-      <%= form.text_area :body %><br>
-      <% article.errors.full_messages_for(:body).each do |message| %>
-        <div><%= message %></div>
-      <% end %>
-    </div>
+
+
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, Visible::VALID_STATUSES, selected: @article.status || 'public' %>
+  </div>
+
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
   
-    <div>
-        <%= form.submit %>
-      </div>
-    
-    
-  <% end %>
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+ 
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const authorSelect = document.getElementById('author-select');
+    const newAuthorFields = document.getElementById('new-author-fields');
+
+    authorSelect.addEventListener('change', (event) => {
+      if (event.target.value === 'new') {
+        newAuthorFields.style.display = 'block';
+      } else {
+        newAuthorFields.style.display = 'none';
+      }
+    });
+  });
+</script>

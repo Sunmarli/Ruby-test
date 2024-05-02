@@ -1,16 +1,49 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Blog</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+    
+   
+
+    
+    
+   
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
+
+
+  </head>
+  <nav class="upper-nav">
+  <ul>
+    
+   
+    <li><%= link_to "Articles", articles_path %></li>
+    <li><%= link_to "Authors", authors_path %></li>
+  </ul>
+</nav>
   <body>
+  
+
+    <div class="content">
     <%= yield %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   
+    <%= javascript_include_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' %>
+    
+
+    
+    </div>
   </body>
 </html>

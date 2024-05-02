@@ -10,24 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_135250) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_02_070215) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.integer "author_id"  # This column references the ID of the author who created the article
+    t.index ["author_id"], name: "index_articles_on_author_id"
+  end
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
-    t.integer "article_id", null: false
+    t.integer "article_id", null: false  # This column references the ID of the article that the comment belongs to
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
     t.index ["article_id"], name: "index_comments_on_article_id"
   end
-
-  add_foreign_key "comments", "articles"
 end
+

@@ -15,13 +15,31 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+   
+    if params[:article][:author_id] == 'new'
+     
+      author = Author.new(
+        first_name: params[:article][:new_author_first_name],
+        last_name: params[:article][:new_author_last_name],
+        email: params[:article][:new_author_email]
+      )
+     
+      if author.save
+        @article.author = author
+      else
+       
+        render :new
+        return
+      end
+    end
 
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: 'Article was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
+
   def edit
     @article = Article.find(params[:id])
   end
@@ -44,6 +62,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :status)
+    params.require(:article).permit(:status, :title, :body, :author_id)
   end
 end

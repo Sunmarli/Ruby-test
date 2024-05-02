@@ -9,7 +9,7 @@
     </head>
     <body>
 
-        <h1>Hello, This is my first Rails!</h1>
+        <h2>Hello, This is my first Rails training project!</h2>
         <h1>Articles</h1>
 
         Our blog has <%= Article.public_count %> articles and counting!
@@ -19,12 +19,17 @@
                 <% unless article.archived? %>
                     <li>
                     <%= link_to article.title, article %>
+                    <% if article.author %>
+                    (<%= link_to "by #{article.author.full_name}", author_path(article.author) %>)
+                    <% end %>
+                   
                     </li>
                 <% end %>
                 <% end %>
+                
                 </ul>
 
-        <%= link_to "New Article", new_article_path %>
+        <%= link_to "New Article", new_article_path, class: "btn" %>
 
     </body>
     
