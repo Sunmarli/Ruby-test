@@ -5,8 +5,7 @@ Rails.application.routes.draw do
     resources :comments
   end
  
-  resources :authors, only: [:new, :create, :index, :show,:edit]
-  
+  resources :authors
 
 
 

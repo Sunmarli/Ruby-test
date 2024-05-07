@@ -13,20 +13,23 @@
  *= require_tree .
  *= require_self
  */
- body{
-     background-color: #F0F0F0;
-     color: black;
+ body {
+  background-color: #F0F0F0;
+  color: black;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-   
-    height: 100vh; 
- }
- .content {
-    position: absolute; /* Position the div */
-    top: 20%; 
-    right: 20%;
-  }
-
+.content {
+  position: relative; /* Change to relative positioning */
+  margin: 10% auto; /* Center the content horizontally */
+  max-width: 800px; /* Limit content width */
+  padding: 20px;
+  
  
+}
+
 a {
     color:#213555; 
     text-decoration: none; 
