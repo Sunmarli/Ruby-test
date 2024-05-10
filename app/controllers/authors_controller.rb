@@ -26,12 +26,14 @@ class AuthorsController < ApplicationController
       end
     
       def update
-        @author = Author.find(params[:id])
-    
-        if @author.update(author_params)
-          redirect_to @author
-        else
-          render :edit, status: :unprocessable_entity
+        respond_to do |format|
+          if @author.update(author_params)
+            format.html { redirect_to @author, notice: 'Author was successfully updated.' }
+            format.json { render :show, status: :ok, location: @author }
+          else
+            format.html { render :edit }
+            format.json { render json: @author.errors, status: :unprocessable_entity }
+          end
         end
       end
       def destroy

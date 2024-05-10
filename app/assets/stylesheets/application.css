@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
  body{
      background-color: #F0F0F0;
      color: black;
@@ -31,8 +32,25 @@
   display: flex;
   max-width: 60%;
   }
+=======
+ body {
+  background-color: #F0F0F0;
+  color: black;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
+
+.content {
+  position: relative; /* Change to relative positioning */
+  margin: 10% auto; /* Center the content horizontally */
+  max-width: 800px; /* Limit content width */
+  padding: 20px;
+  
  
+}
+
 a {
     color:#213555; 
     text-decoration: none; 
