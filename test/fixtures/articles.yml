@@ -1,0 +1,10 @@
+one:
+  title: "First Article"
+  body: "Lorem ipsum dolor sit amet."
+  author_id: 1
+
+two:
+  title: "Second Article"
+  body: "Consectetur adipiscing elit."
+  author_id: 2
+
